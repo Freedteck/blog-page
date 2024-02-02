@@ -1,0 +1,238 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  height: 100vh;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 100%;
+}
+.main {
+  border: 1px solid black;
+  grid-column: 2;
+  grid-row: 1;
+}
+.sidebar {
+  grid-column: 1;
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* ********* main ********** */
+.main header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 2fr 0.5fr;
+  border-bottom: 1px solid black;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
+}
+.main header > div {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .main header p {
+    color: #fff;
+} */
+.main header > div:hover {
+  background-color: rgb(233, 231, 231);
+}
+.main header .input:hover {
+  background-color: transparent;
+}
+.main header div.search {
+  display: flex;
+  align-items: center;
+  padding: 3px 20px;
+  border-radius: 20px;
+  background-color: rgb(150, 149, 149);
+  width: 100%;
+}
+.main header .search input {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+/* .main header > div i {
+    color: #fff;
+} */
+.main header > div:last-child:hover {
+  background-color: transparent;
+}
+.main .new-post {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid gray;
+}
+.new-post .create-post {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.create-post .top-area {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+.create-post .top-area textarea {
+  background-color: transparent;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+}
+.top-area .world {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 0;
+}
+.create-post .bottom-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bottom-area .icons {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+.create-post .bottom-area .post {
+  padding: 7px 20px;
+  border-radius: 20px;
+  background-color: rgb(44, 81, 247);
+}
+.post p {
+    color: #fff;
+}
+.main .show-all {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+}
+.show-all a {
+  color: rgb(44, 81, 247);
+}
+.main .main-post {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px 25px;
+}
+.main-post > .post {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 10px;
+}
+.main-post > .post .image {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.post .image .name {
+    font-weight: 600;
+}
+.main-post > .post .image img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: gray;
+    display: flex;
+}
+.main-post > .post .info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main-post > .post .info .post-image {
+    height: 300px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+}
+.info .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+/* ********* Sidebar ********** */
+.sidebar #logo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.3rem;
+}
+.sidebar #logo i {
+  font-size: 2.5rem;
+}
+.sidebar .side {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 1.3rem;
+  justify-content: space-between;
+  flex: 1;
+}
+.sidebar .side > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sidebar .side > div > i {
+  font-size: 1.5rem;
+}
+.side > .create-post {
+  background-color: rgb(44, 81, 247);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-radius: 50px;
+}
+.side .profile {
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.profile div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile .img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  overflow: hidden;
+}
