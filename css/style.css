@@ -14,8 +14,6 @@ header {
   background-color: #000;
   color: #fff;
   padding: 15px;
-  position: sticky;
-  top: 0;
 }
 .container {
   max-width: 1300px;
@@ -99,9 +97,10 @@ main {
   border-bottom: 1px solid black;
   gap: 5px;
   position: sticky;
-  top: 69px;
+  top: 0;
 }
-.left, .right {
+.left,
+.right {
   padding: 15px;
   text-align: center;
   flex: 1;
@@ -111,12 +110,43 @@ main {
 .active {
   background-color: rgb(221, 220, 220);
 }
-.left:hover, .right:hover {
+.left:hover,
+.right:hover {
   background-color: rgb(221, 220, 220);
   cursor: pointer;
 }
-.post-image img{
+.post-image img,
+.blog-img {
   width: 100%;
+  margin: 20px 0;
+}
+.blog-page {
+  padding: 20px;
+  box-shadow: 0 0 3px 1px rgb(134, 133, 133);
+  border-radius: 20px;
+  flex: 1;
+}
+.blog-page .info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.blog-page .blog-article {
+  line-height: 2;
+}
+
+.blog-page .comment-head {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  margin-top: 40px;
+}
+.comment .info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 0;
+  box-shadow: 2px 1px 1px 1px rgba(134, 133, 133, 0.8);
+  margin-top: 15px;
 }
 .sidebar {
   grid-column: 2;
@@ -154,7 +184,7 @@ main {
   flex-direction: column;
   gap: 8px;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(134, 133, 133, .8);
+  border-bottom: 1px solid rgba(134, 133, 133, 0.8);
 }
 .dialog {
   margin: auto;
@@ -164,7 +194,7 @@ main {
 form {
   padding: 15px;
 }
-form fieldset{
+form fieldset {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -181,7 +211,8 @@ label {
   flex-direction: column;
   gap: 8px;
 }
-form input, textarea {
+form input,
+textarea {
   outline: none;
   padding: 15px;
   resize: none;

@@ -8,6 +8,20 @@ const data = [
     image:
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZtBHjp7N7nD6XVoONp-rgP0-ox22E8pZLlHUVEqWXiGf7suByIAurM0k7af4kFqVdJCW6UMKilxzzdDWGl-zZ1Jon8wtr3iqAVnWIIhR36vyy7xv_KMF8lm8fBQKNOHFWuFXypsUORiKtn0LTdXTt3hd-tP1vWxLUURNUWaj2EAJgCn8kt8Nouw77/s1920/mason-jars-2742757_1920.jpg",
     following: false,
+    comments: [
+      {
+        author: "Commenter one",
+        message: "Wow! this is a nice blog",
+      },
+      {
+        author: "Commenter two",
+        message: "I'll like to know more",
+      },
+      {
+        author: "Commenter three",
+        message: "Interesting one",
+      },
+    ],
   },
   {
     title: "Blog Two",
@@ -18,6 +32,20 @@ const data = [
     image:
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEpIyiPQtRbBR38DVAHm9IIpR5FUjxr1gNEWZjEeRbXUsxAzyLukUlaBQPftOGqg_ZwM6fWLTevxWsjoQFKCMyjBa9_zTOftU95lHMPH5ovazEseABgMSqCKAXjSV3yl9y-HkIGuiAQ1mVv1U00NkO2UUhGzybwS2hThhNFLuOhSel9qHufL_lM9Mi/w600-h300-p-k-no-nu/shelf-1285186_1920.jpg",
     following: false,
+    comments: [
+      {
+        author: "Commenter one",
+        message: "Wow! this is a nice blog",
+      },
+      {
+        author: "Commenter two",
+        message: "Keep going",
+      },
+      {
+        author: "Commenter three",
+        message: "Super one",
+      },
+    ],
   },
   {
     title: "Blog Three",
@@ -28,6 +56,16 @@ const data = [
     image:
       "https://assets-global.website-files.com/606a802fcaa89bc357508cad/6070b0016932223adbd79ab2_sddefault-2.jpeg",
     following: false,
+    comments: [
+      {
+        author: "Commenter one",
+        message: "Wow! nice try",
+      },
+      {
+        author: "Commenter two",
+        message: "Deep one",
+      },
+    ],
   },
   {
     title: "Blog Four",
@@ -38,6 +76,16 @@ const data = [
     image:
       "https://independent.ng/wp-content/uploads/Leslie-Jamison-576x430.jpg",
     following: false,
+    comments: [
+      {
+        author: "Commenter two",
+        message: "Wow! How can I join?",
+      },
+      {
+        author: "Commenter three",
+        message: "When will this be over?",
+      },
+    ],
   },
   {
     title: "Blog Five",
@@ -48,6 +96,20 @@ const data = [
     image:
       "https://assets-global.website-files.com/606a802fcaa89bc357508cad/65c0f97a1835d6213299c8c5_Boosting%20your%20freelancing%20game_%20AI%20tools%20for%20enhanced%20efficiency.jpg",
     following: false,
+    comments: [
+      {
+        author: "Commenter one",
+        message: "Excellent Topic",
+      },
+      {
+        author: "Commenter two",
+        message: "I will be there!!!",
+      },
+      {
+        author: "Commenter three",
+        message: "Let's Engage",
+      },
+    ],
   },
 ];
 
@@ -73,10 +135,12 @@ async function getPost(info) {
 
 function createPost() {
   mainContent.innerHTML = "";
+  let id = 0;
   getPost(data).then((response) => {
     for (const index of response) {
       const post = document.createElement("div");
       post.classList.add("post");
+      post.id = id;
       const image = document.createElement("div");
       image.classList.add("image");
       const img = new Image();
@@ -101,6 +165,8 @@ function createPost() {
       const icons = document.createElement("div");
       icons.classList.add("icons");
       const comment = document.createElement("i");
+      const noOfComments = document.createElement("div");
+      const count = document.createElement("p");
       comment.classList.add("fa-regular");
       comment.classList.add("fa-message");
       const like = document.createElement("i");
@@ -109,6 +175,14 @@ function createPost() {
       const share = document.createElement("i");
       share.classList.add("fa-solid");
       share.classList.add("fa-share-nodes");
+
+      noOfComments.style.display = "flex"
+      noOfComments.style.gap = "8px"
+      noOfComments.style.alignItems = "center"
+
+      count.textContent = `${index.comments.length} comments`
+      count.style.fontSize = ".9rem"
+      count.style.color = "grey"
 
       image.appendChild(img);
       image.appendChild(name);
@@ -119,17 +193,27 @@ function createPost() {
       info.appendChild(nameText);
       info.appendChild(icons);
 
-      icons.appendChild(comment);
+      noOfComments.appendChild(comment)
+      noOfComments.appendChild(count)
+
+      icons.appendChild(noOfComments);
       icons.appendChild(like);
       icons.appendChild(share);
 
       post.appendChild(image);
       post.appendChild(info);
       mainContent.appendChild(post);
+      id++;
 
       like.addEventListener("click", (e) => {
         handleFollow(e);
         index.following = true;
+      });
+
+      post.addEventListener("click", (e) => {
+        if (e.target !== like && e.target !== comment && e.target !== share) {
+          viewPost(index);
+        }
       });
     }
   });
@@ -211,6 +295,55 @@ function handleFollow(e) {
     e.target.classList.remove("fa-regular");
     e.target.classList.add("fa-solid");
   }
+}
+
+function viewPost(index) {
+  mainContent.innerHTML = "";
+  const blogPage = document.createElement("div");
+  const blogContent = document.createElement("div");
+  const blogTitle = document.createElement("h1");
+  const blogAuthor = document.createElement("p");
+  const blogArticle = document.createElement("p");
+  const blogImage = new Image();
+  const comments = document.createElement("div");
+  const commentHeader = document.createElement("h2");
+  const allComments = document.createElement("div");
+
+  blogPage.classList.add("blog-page");
+  blogContent.classList.add("info");
+  blogImage.src = index.image;
+  blogImage.classList.add("blog-img");
+  blogArticle.classList.add("blog-article");
+  commentHeader.classList.add("comment-head");
+  comments.classList.add("comment");
+  allComments.classList.add("latest");
+
+  blogTitle.textContent = index.title;
+  blogAuthor.textContent = index.name;
+  blogArticle.textContent = index.content;
+  commentHeader.textContent = "Comments";
+
+  for (const comment of index.comments) {
+    const commentSec = document.createElement('div')
+    commentSec.innerHTML = `
+    <div class="info">
+      <h3 class="title">${comment.author}</h3>
+      <p class="desc">
+        ${comment.message}
+      </p>
+    </div>`
+    allComments.appendChild(commentSec)
+  }
+
+  blogContent.appendChild(blogTitle);
+  blogContent.appendChild(blogAuthor);
+  blogContent.appendChild(blogImage);
+  blogContent.appendChild(blogArticle);
+  comments.appendChild(commentHeader);
+  blogContent.appendChild(comments);
+  comments.appendChild(allComments);
+  blogPage.appendChild(blogContent);
+  mainContent.append(blogPage);
 }
 
 topTabs.forEach((tab, index) => {
