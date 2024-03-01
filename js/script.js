@@ -227,10 +227,12 @@ function showFollowersPost() {
     sorry.innerHTML = "You do not Have Any Followers At The Moment!!";
     mainContent.appendChild(sorry);
   }
+  let id = 0;
   getPost(followers).then((response) => {
     for (const index of response) {
       const post = document.createElement("div");
       post.classList.add("post");
+      post.id = id;
       const image = document.createElement("div");
       image.classList.add("image");
       const img = new Image();
@@ -255,6 +257,8 @@ function showFollowersPost() {
       const icons = document.createElement("div");
       icons.classList.add("icons");
       const comment = document.createElement("i");
+      const noOfComments = document.createElement("div");
+      const count = document.createElement("p");
       comment.classList.add("fa-regular");
       comment.classList.add("fa-message");
       const like = document.createElement("i");
@@ -263,6 +267,14 @@ function showFollowersPost() {
       const share = document.createElement("i");
       share.classList.add("fa-solid");
       share.classList.add("fa-share-nodes");
+
+      noOfComments.style.display = "flex"
+      noOfComments.style.gap = "8px"
+      noOfComments.style.alignItems = "center"
+
+      count.textContent = `${index.comments.length} comments`
+      count.style.fontSize = ".9rem"
+      count.style.color = "grey"
 
       image.appendChild(img);
       image.appendChild(name);
@@ -273,19 +285,28 @@ function showFollowersPost() {
       info.appendChild(nameText);
       info.appendChild(icons);
 
-      icons.appendChild(comment);
+      noOfComments.appendChild(comment)
+      noOfComments.appendChild(count)
+
+      icons.appendChild(noOfComments);
       icons.appendChild(like);
       icons.appendChild(share);
 
       post.appendChild(image);
       post.appendChild(info);
       mainContent.appendChild(post);
-      console.log(mainContent);
+      id++;
 
-      // like.addEventListener("click", (e) => {
-      //   handleFollow(e);
-      //   index.following = true
-      // });
+      like.addEventListener("click", (e) => {
+        handleFollow(e);
+        index.following = true;
+      });
+
+      post.addEventListener("click", (e) => {
+        if (e.target !== like && e.target !== comment && e.target !== share) {
+          viewPost(index);
+        }
+      });
     }
   });
 }
