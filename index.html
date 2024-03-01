@@ -12,102 +12,84 @@
     <title>Blog Page</title>
   </head>
   <body>
-    <div class="main-container">
-      <div class="main">
-        <header>
-          <div class="left"><p>For You</p></div>
-          <div class="right"><p>Following</p></div>
-          <div class="input">
-            <div class="search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="search"
-                name="search"
-                id="search"
-                placeholder="Search"
-              />
-            </div>
-          </div>
-          <div><i class="fa-solid fa-gear"></i></div>
-        </header>
-        <div class="new-post">
-          <div class="profile-img"></div>
-          <div class="create-post">
-            <div class="top-area">
-              <textarea
-                name="textarea"
-                id="textarea"
-                cols="10"
-                rows="1"
-                placeholder="What's New?!"
-              ></textarea>
-              <div class="world">
-                <i class="fa-solid fa-earth-oceania"></i>
-                <p>Happening world wide</p>
-              </div>
-            </div>
-            <div class="bottom-area">
-              <div class="icons">
-                <i class="fa-solid fa-photo-film"></i>
-                <i class="fa-solid fa-photo-film"></i>
-                <i class="fa-solid fa-photo-film"></i>
-                <i class="fa-solid fa-medal"></i>
-                <i class="fa-solid fa-medal"></i>
-                <i class="fa-solid fa-medal"></i>
-              </div>
-              <div class="post">
-                <p>Post</p>
-              </div>
-            </div>
+    <header>
+      <nav class="header-nav container">
+        <h2>Da'Blog</h2>
+        <!-- <div class="input">
+          <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="search"
+              name="search"
+              id="search"
+              placeholder="Search"
+            />
           </div>
         </div>
-        <div class="show-all">
-          <a href="#">Show all</a>
+        <div><i class="fa-solid fa-gear"></i></div> -->
+        <div class="nav-links">
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Settings</li>
+          </ul>
         </div>
-        <div class="main-post">
+      </nav>
+    </header>
 
+    <main class="container">
+      <div class="main-body">
+        <div class="top">
+          <div class="left active"><p>For You</p></div>
+          <div class="right"><p>Following</p></div>
         </div>
+        <div class="main-content"></div>
       </div>
       <div class="sidebar">
-        <div id="logo">
-          <i class="fa-solid fa-blog"></i>
-          <h2>Da'Blog</h2>
-        </div>
-        <div class="side">
-          <div class="navs">
-            <i class="fa-solid fa-house"></i>
-            <a href="#">Home</a>
-          </div>
-          <div class="navs">
+        <div class="top">
+          <div class="search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <a href="#">Explore</a>
+            <input type="search" placeholder="Search blog" />
           </div>
-          <div class="navs">
-            <i class="fa-regular fa-bell"></i>
-            <a href="#">Notification</a>
-          </div>
-          <div class="navs">
-            <i class="fa-regular fa-comment"></i>
-            <a href="#">Messages</a>
-          </div>
-          <div class="navs">
-            <i class="fa-solid fa-angles-right"></i>
-            <a href="#">Others</a>
-          </div>
-          <div class="create-post">Create Post</div>
-          <div class="profile">
-            <div>
-              <div class="img">
-                <img src="" alt="profile image" width="50" />
-              </div>
-              <div class="user-name">
-                <p>User name <br />user tag</p>
-              </div>
+        </div>
+        <div class="side-content">
+          <div class="latest">
+            <h2>Latest</h2>
+            <div class="info">
+              <h3 class="title">Blog One</h3>
+              <p class="desc">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Mollitia, nisi.
+              </p>
             </div>
-            <div>...</div>
+            <div class="info">
+              <h3 class="title">Blog Two</h3>
+              <p class="desc">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Mollitia, nisi.
+              </p>
+            </div>
+          </div>
+          <div class="latest">
+            <h2>Announcement</h2>
+            <div class="info">
+              <h3 class="title">Announcement one</h3>
+              <p class="desc">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Mollitia, nisi.
+              </p>
+            </div>
+            <div class="info">
+              <h3 class="title">Announcement Two</h3>
+              <p class="desc">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Mollitia, nisi.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>
