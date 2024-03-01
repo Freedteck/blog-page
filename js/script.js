@@ -299,7 +299,8 @@ function showFollowersPost() {
 
       like.addEventListener("click", (e) => {
         handleFollow(e);
-        index.following = true;
+        index.following = false;
+        showFollowersPost()
       });
 
       post.addEventListener("click", (e) => {
