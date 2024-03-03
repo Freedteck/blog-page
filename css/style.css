@@ -70,6 +70,11 @@ main {
   background-color: #dbd7d7;
   font-weight: 600;
 }
+.post:hover {
+  cursor: auto;
+  transform: scale(1.01);
+  transition: 0.4s;
+}
 .image img {
   width: 35px;
   height: 35px;
@@ -139,6 +144,20 @@ main {
   border-bottom: 1px solid black;
   padding: 10px 0;
   margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-head .add-comment {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: rgb(0, 0, 255);
+  color: #fff;
+}
+.comment-head .add-comment:hover, #new:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 255, .7);
+  transform: scale(1.05);
 }
 .comment .info {
   display: flex;

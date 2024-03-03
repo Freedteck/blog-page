@@ -121,6 +121,33 @@ const dialog = document.querySelector(".dialog");
 const newBolg = document.querySelector("#new");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
+const latestBlog = document.querySelector('.side-content .latest')
+
+function getLatestPost() {
+  let id = 0;
+  getPost(data).then((response) => {
+    const latestData = response.slice(response.length - 3)
+    for (const index of latestData) {
+      const info = document.createElement('div')
+      
+      info.innerHTML = `<div class="info">
+      <h3 class="title">${index.title}</h3>
+      <p class="desc">${index.content.slice(0, 50)} ...'
+      </p>
+    </div>`
+    latestBlog.appendChild(info)
+      id++;
+
+      // post.addEventListener("click", (e) => {
+      //   if (e.target !== like && e.target !== comment && e.target !== share) {
+      //     viewPost(index);
+      //   }
+      // });
+    }
+  });
+}
+
+getLatestPost()
 
 newBolg.addEventListener("click", (e) => {
   e.preventDefault();
@@ -156,7 +183,7 @@ function createPost() {
       blogTitle.textContent = index.title;
       const text = document.createElement("div");
       text.classList.add("text");
-      text.textContent = index.content;
+      text.textContent = index.content.slice(0, 100);
       const postImage = document.createElement("div");
       const postImg = new Image();
       postImg.src = index.image;
@@ -328,7 +355,9 @@ function viewPost(index) {
   const blogArticle = document.createElement("p");
   const blogImage = new Image();
   const comments = document.createElement("div");
+  const commentHead = document.createElement("div");
   const commentHeader = document.createElement("h2");
+  const addComment = document.createElement("p");
   const allComments = document.createElement("div");
 
   blogPage.classList.add("blog-page");
@@ -336,14 +365,16 @@ function viewPost(index) {
   blogImage.src = index.image;
   blogImage.classList.add("blog-img");
   blogArticle.classList.add("blog-article");
-  commentHeader.classList.add("comment-head");
+  commentHead.classList.add("comment-head");
   comments.classList.add("comment");
   allComments.classList.add("latest");
+  addComment.classList.add('add-comment')
 
   blogTitle.textContent = index.title;
   blogAuthor.textContent = index.name;
   blogArticle.textContent = index.content;
   commentHeader.textContent = "Comments";
+  addComment.textContent = "+ Add"
 
   for (const comment of index.comments) {
     const commentSec = document.createElement('div')
@@ -361,7 +392,9 @@ function viewPost(index) {
   blogContent.appendChild(blogAuthor);
   blogContent.appendChild(blogImage);
   blogContent.appendChild(blogArticle);
-  comments.appendChild(commentHeader);
+  commentHead.appendChild(commentHeader)
+  commentHead.appendChild(addComment)
+  comments.appendChild(commentHead);
   blogContent.appendChild(comments);
   comments.appendChild(allComments);
   blogPage.appendChild(blogContent);
